@@ -1,0 +1,45 @@
+IRCTC APP:
+docker build -t harikrishnathopugunta805/irctc-microservice:0.0.1-RELEASE .
+docker container run -d -p 5000:9090 --name=irctc-microservice --network=tickets-network  harikrishnathopugunta805/irctc-microservice:0.0.1-RELEASE
+
+docker network create tickets-network
+
+
+Makemytrip APP:
+docker build -t harikrishnathopugunta805/makemytrip-microservice:0.0.1-RELEASE .
+
+docker container run -d -p 5001:9091 --env=IRCTC_SERVICE_HOST=https://irctc-microservice --name=makemytrip-microservice --link=irctc-microservice harikrishnathopugunta805/makemytrip-microservice:0.0.1-RELEASE
+
+
+docker container run -d -p 5001:9091 --name=makemytrip-microservice --network=tickets-network harikrishnathopugunta805/makemytrip-microservice:0.0.1-RELEASE
+
+
+Paytm APP :
+docker build -t harikrishnathopugunta805/paytm-microservice:0.0.1-RELEASE .
+
+docker container run -d -p 5002:9092 --env=IRCTC_SERVICE_HOST=https://irctc-microservice --name=paytm-microservice --link=irctc-microservice harikrishnathopugunta805/paytm-microservice:0.0.1-RELEASE
+
+docker container run -d -p 5002:9092 --name=paytm-microservice --network=tickets-network harikrishnathopugunta805/paytm-microservice:0.0.1-RELEASE
+
+CONTAINER ID   IMAGE                                                            COMMAND                  CREATED              STATUS              PORTS                    NAMES
+bae789a8783f   harikrishnathopugunta805/paytm-microservice:0.0.1-RELEASE        "sh -c 'java -jar /d…"   43 seconds ago       Up 42 seconds       0.0.0.0:5002->9092/tcp   vigorous_raman
+3122ea825649   harikrishnathopugunta805/makemytrip-microservice:0.0.1-RELEASE   "sh -c 'java -jar /d…"   About a minute ago   Up About a minute   0.0.0.0:5001->9091/tcp   frosty_shaw
+67d82c11108b   harikrishnathopugunta805/irctc-microservice:0.0.1-RELEASE        "sh -c 'java -jar /d…"   5 minutes ago        Up 5 minutes        0.0.0.0:5000->9090/tcp   jovial_hodgkin
+
+
+
+http://localhost:5000/getTrainList
+
+http://localhost:5001/makemytrip-train-list
+
+
+http://localhost:5002/paytm-train-list
+
+
+--env=IRCTC_SERVICE_HOST=https://irctc-microservice
+--name=irctc-microservice 
+--link=irctc-microservice 
+
+54b92baf4905   harikrishnathopugunta805/paytm-microservice:0.0.1-RELEASE        "sh -c 'java -jar /d…"   34 seconds ago       Up 32 seconds   0.0.0.0:5002->9092/tcp   paytm-microservice
+c68fcd5356d3   harikrishnathopugunta805/makemytrip-microservice:0.0.1-RELEASE   "sh -c 'java -jar /d…"   44 seconds ago       Up 43 seconds   0.0.0.0:5001->9091/tcp   makemytrip-microservice
+125a1dd6ba0f   harikrishnathopugunta805/irctc-microservice:0.0.1-RELEASE        "sh -c 'java -jar /d…"   About a minute ago   Up 59 seconds   0.0.0.0:5000->9090/tcp   irctc-microservice

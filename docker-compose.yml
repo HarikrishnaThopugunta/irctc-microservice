@@ -1,0 +1,33 @@
+version: '3.0'
+services:
+
+  irctc-microservice: 
+    image: harikrishnathopugunta805/irctc-microservice:0.0.1-RELEASE
+    ports:
+      - "5000:9090"
+    restart: always
+    networks:
+      - tickets-compose-network
+  
+  makemytrip-microservice:
+    image: harikrishnathopugunta805/makemytrip-microservice:0.0.1-RELEASE    
+    ports:
+      - "5001:9091"
+    restart: always
+    depends_on:
+      - irctc-microservice
+    networks:
+      - tickets-compose-network
+
+  paytm-microservice:
+    image: harikrishnathopugunta805/paytm-microservice:0.0.1-RELEASE
+    ports:
+      - "5002:9092"
+    restart: always
+    depends_on:
+      - irctc-microservice
+    networks:
+      - digital-compose-network
+networks:
+  tickets-compose-network:
+  digital-compose-network:
