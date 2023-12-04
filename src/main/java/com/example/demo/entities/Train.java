@@ -22,17 +22,29 @@ public class Train implements Serializable {
 	
 	@JsonProperty(value = "destination")
 	private String destination;
+	
+	@JsonProperty(value = "ipAddress")
+	private String ipAddress;
+
+	public String getIpAddress() {
+		return ipAddress;
+	}
+
+	public void setIpAddress(String ipAddress) {
+		this.ipAddress = ipAddress;
+	}
 
 	public Train() {
 
 	}
 
-	public Train(String trainName, Integer trainNumber, String source, String destination) {
+	public Train(String trainName, Integer trainNumber, String source, String destination, String ipAddress) {
 		super();
 		this.trainName = trainName;
 		this.trainNumber = trainNumber;
 		this.source = source;
 		this.destination = destination;
+		this.ipAddress = ipAddress;
 	}
 
 	public void setTrainName(String trainName) {

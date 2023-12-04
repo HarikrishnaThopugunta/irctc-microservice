@@ -29,6 +29,12 @@ public class TrainBuilder {
 		train.setDestination(destination);
 		return this;
 	}
+	
+	public TrainBuilder addIpAddress(String ipAddress) {
+		train.setIpAddress(ipAddress);
+		return this;
+	}
+	
 	public Train buildTrainObject() {
 		return train;
 	}
