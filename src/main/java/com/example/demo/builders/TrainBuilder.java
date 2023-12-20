@@ -1,13 +1,13 @@
 package com.example.demo.builders;
 
-import com.example.demo.entities.Train;
+import com.example.demo.entities.TrainTrakingEntity;
 
 public class TrainBuilder {
 
-	private Train train;
+	private TrainTrakingEntity train;
 	
 	public TrainBuilder() {
-		this.train = new Train();
+		this.train = new TrainTrakingEntity();
 	}
 
 	public TrainBuilder addTrainName(String trainName) {
@@ -35,7 +35,7 @@ public class TrainBuilder {
 		return this;
 	}
 	
-	public Train buildTrainObject() {
+	public TrainTrakingEntity buildTrainObject() {
 		return train;
 	}
 

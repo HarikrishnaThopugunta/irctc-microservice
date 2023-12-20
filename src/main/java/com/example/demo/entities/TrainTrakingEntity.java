@@ -6,7 +6,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 
 
-public class Train implements Serializable {
+public class TrainTrakingEntity implements Serializable {
 
 	
 	private static final long serialVersionUID = 1L;
@@ -34,11 +34,11 @@ public class Train implements Serializable {
 		this.ipAddress = ipAddress;
 	}
 
-	public Train() {
+	public TrainTrakingEntity() {
 
 	}
 
-	public Train(String trainName, Integer trainNumber, String source, String destination, String ipAddress) {
+	public TrainTrakingEntity(String trainName, Integer trainNumber, String source, String destination, String ipAddress) {
 		super();
 		this.trainName = trainName;
 		this.trainNumber = trainNumber;
